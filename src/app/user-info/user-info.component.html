@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row">
+    <p style="padding: 10px 0 10px 0;">User Info table</p>
+    <div class="col-xs-12">
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.position }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        </ng-container>
+
+        <!-- Gender Column -->
+        <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.gender }} </mat-cell>
+        </ng-container>
+
+        <!-- Married Column -->
+        <ng-container matColumnDef="married">
+          <mat-header-cell *matHeaderCellDef> Married </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.married }} </mat-cell>
+        </ng-container>
+
+        <!-- HusbandName Column -->
+        <ng-container matColumnDef="husbandName">
+          <mat-header-cell *matHeaderCellDef>
+            Husband Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.husbandName }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- FatherName Column -->
+        <ng-container matColumnDef="fatherName">
+          <mat-header-cell *matHeaderCellDef>
+            Father Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.fatherName }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- DOB Column -->
+        <ng-container matColumnDef="dob">
+          <mat-header-cell *matHeaderCellDef> DOB </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ formatDateForUI(element.dob) }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Phone no Column -->
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell *matHeaderCellDef> Phone no </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.phoneNumber }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Aadhar No Column -->
+        <ng-container matColumnDef="aadharNumber">
+          <mat-header-cell *matHeaderCellDef> Aadhar no </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.aadharNumber }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- PAN no Column -->
+        <ng-container matColumnDef="panNumber">
+          <mat-header-cell *matHeaderCellDef> PAN no</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.panNumber }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Edit/Update Column -->
+        <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <p (click)="onClickEditUser(element)" class="user-info-edit">
+              Edit
+            </p>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12" style="padding-top: 30px;">
+      <button
+        style="margin-top: 15px;"
+        mat-raised-button
+        color="primary"
+        (click)="onClickAddUser()"
+      >
+        Add User
+      </button>
+    </div>
+  </div>
+</div>

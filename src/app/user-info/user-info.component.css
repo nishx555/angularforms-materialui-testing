@@ -1,0 +1,46 @@
+table {
+  width: 80%;
+}
+
+.mat-column-position,
+.mat-column-name,
+.mat-column-gender,
+.mat-column-married,
+.mat-column-husbandName,
+.mat-column-fatherName,
+.mat-column-dob,
+.mat-column-phoneNumber,
+.mat-column-aadharNumber,
+.mat-column-panNumber,
+.mat-column-edit {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-position,
+.mat-column-gender,
+.mat-column-married,
+.mat-column-edit {
+  flex: 0 0 5% !important;
+  width: 5% !important;
+}
+
+.mat-column-dob,
+.mat-column-phoneNumber {
+  flex: 0 0 8% !important;
+  width: 8% !important;
+}
+
+.user-info-edit {
+  cursor: pointer;
+  text-decoration: underline;
+}

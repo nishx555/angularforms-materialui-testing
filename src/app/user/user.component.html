@@ -1,0 +1,144 @@
+<div class="container" class="user-form-container">
+  <div class="row">
+    <p class="user-form-title-p-tag">
+      Add New User - Please enter Info
+    </p>
+    <div class="col-xs-12">
+      <form
+        style="padding: 25px;"
+        [formGroup]="userForm"
+        (ngSubmit)="onFormSubmit()"
+        class="mat-elevation-z8"
+      >
+        <mat-form-field class="user-form-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="userForm.get('name').hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-label
+          >Gender:
+          <mat-radio-group ngDefaultControl formControlName="gender">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
+          </mat-radio-group>
+        </mat-label>
+        <br /><br />
+        <hr />
+        <mat-label
+          >Married:
+          <mat-radio-group ngDefaultControl formControlName="married">
+            <mat-radio-button value="Yes">Yes</mat-radio-button>
+            <mat-radio-button value="No">No</mat-radio-button>
+          </mat-radio-group>
+        </mat-label>
+        <br /><br />
+        <hr />
+        <mat-form-field class="user-form-full-width">
+          <mat-label>Husband Name</mat-label>
+          <input matInput formControlName="husbandName" />
+        </mat-form-field>
+        <mat-form-field class="user-form-full-width">
+          <mat-label>Father Name</mat-label>
+          <input matInput formControlName="fatherName" />
+        </mat-form-field>
+        <mat-form-field class="user-form-full-width">
+          <mat-label>DOB</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dob" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            #picker
+            startView="year"
+            [startAt]="startDate"
+          ></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field
+          class="user-form-full-width"
+          hintLabel="10 digit number"
+        >
+          <mat-label>Phone no: </mat-label>
+          <input matInput formControlName="phoneNumber" maxlength="10" />
+          <mat-hint align="end"
+            >{{ userForm.get("phoneNumber").value?.length || 0 }}/10</mat-hint
+          >
+        </mat-form-field>
+
+        <mat-form-field
+          class="user-form-full-width"
+          hintLabel="16 digit number"
+        >
+          <mat-label>Aadhar no: </mat-label>
+          <input
+            matInput
+            placeholder="Ex.
+          1278612238718723"
+            type="text"
+            formControlName="aadharNumber"
+            maxlength="16"
+          />
+          <mat-hint align="end"
+            >{{ userForm.get("aadharNumber").value?.length || 0 }}/16</mat-hint
+          >
+          <mat-error
+            *ngIf="
+              !userForm.get('aadharNumber').valid &&
+              userForm.get('aadharNumber').errors['required']
+            "
+            >This field is required!</mat-error
+          >
+          <mat-error
+            *ngIf="
+              !userForm.get('aadharNumber').valid &&
+              userForm.get('aadharNumber').errors['pattern']
+            "
+          >
+            Aadhar number is <strong>invalid</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="
+              !userForm.get('aadharNumber').valid &&
+              userForm.get('aadharNumber').errors['maxLength']
+            "
+          >
+            Aadhar number should be of <strong>16 digits</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          class="user-form-full-width"
+          hintLabel="Max 10 characters"
+        >
+          <mat-label>PAN no: </mat-label>
+          <input
+            matInput
+            placeholder="Ex. AHBS1782AS"
+            formControlName="panNumber"
+            maxlength="10"
+          />
+          <mat-hint align="end"
+            >{{ userForm.get("panNumber").value?.length || 0 }}/10</mat-hint
+          >
+        </mat-form-field>
+        <button
+          style="margin-top: 15px;"
+          mat-raised-button
+          color="primary"
+          [disabled]="!userForm.valid"
+        >
+          {{ submitButtonText }}
+        </button>
+      </form>
+      <div style="padding-top: 15px;">
+        <button mat-raised-button (click)="clearForm()">
+          Clear Form
+        </button>
+        <button mat-raised-button (click)="goBackToUserInfo()">
+          Go back to User Info Table
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

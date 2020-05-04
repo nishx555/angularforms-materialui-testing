@@ -1,0 +1,22 @@
+.user-form-container {
+  min-width: 150px;
+  max-width: 500px;
+  width: 75%;
+}
+
+.user-form-title-p-tag {
+  padding: 10px 0 10px 0;
+  text-align: center;
+}
+
+.user-form-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
