@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserElement, UserService } from "../user/user.service";
+import { AutoCompleteService } from "../common/autocomplete/autocomplete.service";
 
 @Component({
   selector: "app-user-info",
   templateUrl: "./user-info.component.html",
   styleUrls: ["./user-info.component.css"],
+  providers: [AutoCompleteService],
 })
 export class UserInfoComponent implements OnInit {
   displayedColumns: string[] = [
@@ -23,11 +25,17 @@ export class UserInfoComponent implements OnInit {
   ];
 
   dataSource: UserElement[] = [];
-  constructor(private userService: UserService, private router: Router) {}
+  datasourceForAutocomplete;
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private autocompleteService: AutoCompleteService
+  ) {}
 
   ngOnInit(): void {
     let userInfoData = this.userService.getAllUsers();
     this.dataSource = userInfoData;
+    this.datasourceForAutocomplete = this.autocompleteService.getDataSource();
   }
 
   onClickAddUser() {
