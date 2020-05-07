@@ -12,13 +12,12 @@ import { State } from "./autocomplete.service";
 export class AutocompleteComponent implements OnInit {
   myControl = new FormControl();
 
-  @Input("datasource") options: State[];
-  filteredOptions: Observable<State[]>;
+  @Input("datasource") options: String[];
+  filteredOptions: Observable<String[]>;
 
   constructor() {}
 
   ngOnInit() {
-    // this.options = this.autocompleteService.getDataSource();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value) => (typeof value === "string" ? value : value.name)),
@@ -26,15 +25,15 @@ export class AutocompleteComponent implements OnInit {
     );
   }
 
-  displayFn(user: State): string {
-    return user && user.name ? user.name : "";
+  displayFn(inputText: string): string {
+    return inputText ? inputText : "";
   }
 
-  private _filter(name: string): State[] {
-    const filterValue = name.toLowerCase();
+  private _filter(inputTextOption: string): String[] {
+    const filterValue = inputTextOption.toLowerCase();
 
     return this.options.filter(
-      (option) => option.name.toLowerCase().indexOf(filterValue) === 0
+      (option) => option.toLowerCase().indexOf(filterValue) === 0
     );
   }
 }

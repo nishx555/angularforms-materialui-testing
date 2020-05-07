@@ -1,3 +1,6 @@
+<div>
+  Reusable Autocomplete component
+</div>
 <form class="autocomplete-form">
   <mat-form-field class="autocomplete-full-width">
     <mat-label>State</mat-label>
@@ -12,7 +15,7 @@
         *ngFor="let option of filteredOptions | async"
         [value]="option"
       >
-        {{ option.name }}
+        {{ option }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

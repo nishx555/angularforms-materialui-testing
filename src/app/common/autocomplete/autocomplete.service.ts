@@ -45,6 +45,7 @@ export class AutoCompleteService {
   constructor() {}
 
   getDataSource() {
-    return this.datasource;
+    //For initial demo purpose, added a States object array and returns String array for common Observables
+    return <String[]>this.datasource.map((state) => state.name);
   }
 }
