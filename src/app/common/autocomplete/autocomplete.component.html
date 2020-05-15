@@ -9,6 +9,7 @@
       matInput
       [formControl]="myControl"
       [matAutocomplete]="auto"
+      (keyup)="searchTerm$.next($event.target.value)"
     />
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
       <mat-option

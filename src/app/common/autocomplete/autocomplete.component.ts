@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import { State } from "./autocomplete.service";
+import { State, AutoCompleteService } from "./autocomplete.service";
 
 @Component({
   selector: "app-autocomplete",
@@ -14,26 +14,15 @@ export class AutocompleteComponent implements OnInit {
 
   @Input("datasource") options: String[];
   filteredOptions: Observable<String[]>;
+  searchTerm$ = new Subject<string>();
 
-  constructor() {}
+  constructor(private autocompleteService: AutoCompleteService) {}
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(""),
-      map((value) => (typeof value === "string" ? value : value.name)),
-      map((name) => (name ? this._filter(name) : this.options.slice()))
-    );
+    this.filteredOptions = this.autocompleteService.search(this.searchTerm$);
   }
 
   displayFn(inputText: string): string {
     return inputText ? inputText : "";
-  }
-
-  private _filter(inputTextOption: string): String[] {
-    const filterValue = inputTextOption.toLowerCase();
-
-    return this.options.filter(
-      (option) => option.toLowerCase().indexOf(filterValue) === 0
-    );
   }
 }
