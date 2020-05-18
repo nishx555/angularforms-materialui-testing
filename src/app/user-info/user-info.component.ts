@@ -26,16 +26,11 @@ export class UserInfoComponent implements OnInit {
 
   dataSource: UserElement[] = [];
   datasourceForAutocomplete;
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private autocompleteService: AutoCompleteService
-  ) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     let userInfoData = this.userService.getAllUsers();
     this.dataSource = userInfoData;
-    this.datasourceForAutocomplete = this.autocompleteService.getDataSource();
   }
 
   onClickAddUser() {

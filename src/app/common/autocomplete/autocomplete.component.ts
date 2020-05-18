@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { Observable, Subject } from "rxjs";
-import { map, startWith } from "rxjs/operators";
-import { State, AutoCompleteService } from "./autocomplete.service";
+import { AutoCompleteService } from "./autocomplete.service";
 
 @Component({
   selector: "app-autocomplete",
@@ -12,7 +11,6 @@ import { State, AutoCompleteService } from "./autocomplete.service";
 export class AutocompleteComponent implements OnInit {
   myControl = new FormControl();
 
-  @Input("datasource") options: String[];
   filteredOptions: Observable<String[]>;
   searchTerm$ = new Subject<string>();
 
