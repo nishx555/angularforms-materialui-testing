@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
+import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { UserInfoComponent } from "./user-info/user-info.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -32,6 +32,7 @@ export const appRoutes: Routes = [
     BrowserAnimationsModule,
     DemoMaterialModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   providers: [LocalStorageService, UserService],
   bootstrap: [AppComponent],

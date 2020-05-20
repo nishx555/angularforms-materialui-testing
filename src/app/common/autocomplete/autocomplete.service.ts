@@ -1,14 +1,22 @@
-import { Observable, from } from "rxjs";
+import { Observable } from "rxjs";
 import {
   debounceTime,
   distinctUntilChanged,
   switchMap,
   startWith,
 } from "rxjs/operators";
-import { createHttpObservable } from "../util";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
+export interface listResponseDataObject {
+  data: String[];
+}
+
+@Injectable({ providedIn: "root" })
 export class AutoCompleteService {
-  search(searchInput: Observable<string>): Observable<String[]> {
+  constructor(private http: HttpClient) {}
+
+  search(searchInput: Observable<string>): Observable<listResponseDataObject> {
     return searchInput.pipe(
       debounceTime(400),
       distinctUntilChanged(),
@@ -17,7 +25,9 @@ export class AutoCompleteService {
     );
   }
 
-  callSearchTextAPI(searchText = ""): Observable<string[]> {
-    return createHttpObservable(`/api/datasource?search=${searchText}`);
+  callSearchTextAPI(searchText = ""): Observable<listResponseDataObject> {
+    return this.http.get<listResponseDataObject>(
+      `/api/datasource?search=${searchText}`
+    );
   }
 }
