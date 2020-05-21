@@ -5,7 +5,7 @@ import {
   switchMap,
   startWith,
 } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 export interface listResponseDataObject {
@@ -26,8 +26,8 @@ export class AutoCompleteService {
   }
 
   callSearchTextAPI(searchText = ""): Observable<listResponseDataObject> {
-    return this.http.get<listResponseDataObject>(
-      `/api/datasource?search=${searchText}`
-    );
+    return this.http.get<listResponseDataObject>(`/api/datasource`, {
+      params: new HttpParams().set("search", searchText),
+    });
   }
 }
