@@ -11,12 +11,14 @@ import { DemoMaterialModule } from "./user/material-module";
 import { LocalStorageService } from "./common/localStorage.service";
 import { UserService } from "./user/user.service";
 import { AutocompleteComponent } from "./common/autocomplete/autocomplete.component";
+import { D3ChartsComponent } from "./d3-charts/d3-charts.component";
 
 export const appRoutes: Routes = [
   { path: "", component: UserInfoComponent },
   { path: "add-user", component: UserComponent },
   { path: "edit-user/:id", component: UserComponent },
   { path: "autocomplete", component: AutocompleteComponent },
+  { path: "d3-charts", component: D3ChartsComponent },
 ];
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ export const appRoutes: Routes = [
     UserInfoComponent,
     UserComponent,
     AutocompleteComponent,
+    D3ChartsComponent,
   ],
   imports: [
     FormsModule,
