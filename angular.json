@@ -21,13 +21,24 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce",
+                "output": "/tinymce/"
+              },
               "src/assets"
             ],
             "styles": [
+              "node_modules/tinymce/skins/ui/oxide/skin.min.css",
+              "node_modules/tinymce/skins/ui/oxide/content.min.css",
+              "node_modules/tinymce/skins/content/default/content.min.css",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/silver/theme.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -84,10 +95,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
@@ -103,9 +111,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

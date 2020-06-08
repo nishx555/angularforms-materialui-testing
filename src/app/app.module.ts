@@ -12,6 +12,15 @@ import { LocalStorageService } from "./common/localStorage.service";
 import { UserService } from "./user/user.service";
 import { AutocompleteComponent } from "./common/autocomplete/autocomplete.component";
 import { D3ChartsComponent } from "./d3-charts/d3-charts.component";
+import { TinymceEditorComponent } from "./tinymce-editor/tinymce-editor.component";
+import { EditorModule, TINYMCE_SCRIPT_SRC } from "@tinymce/tinymce-angular";
+import { AngularFireModule } from "@angular/fire";
+
+import { environment } from "../environments/environment";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { SectionDialogComponent } from "./section-dialog/section-dialog.component";
 
 export const appRoutes: Routes = [
   { path: "", component: UserInfoComponent },
@@ -19,6 +28,7 @@ export const appRoutes: Routes = [
   { path: "edit-user/:id", component: UserComponent },
   { path: "autocomplete", component: AutocompleteComponent },
   { path: "d3-charts", component: D3ChartsComponent },
+  { path: "editor", component: TinymceEditorComponent },
 ];
 @NgModule({
   declarations: [
@@ -27,6 +37,8 @@ export const appRoutes: Routes = [
     UserComponent,
     AutocompleteComponent,
     D3ChartsComponent,
+    TinymceEditorComponent,
+    SectionDialogComponent,
   ],
   imports: [
     FormsModule,
@@ -36,8 +48,18 @@ export const appRoutes: Routes = [
     DemoMaterialModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    EditorModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
-  providers: [LocalStorageService, UserService],
+  providers: [
+    LocalStorageService,
+    UserService,
+    // { provide: TINYMCE_SCRIPT_SRC, useValue: "tinymce/tinymce.min.js" },
+  ],
   bootstrap: [AppComponent],
+  entryComponents: [SectionDialogComponent],
 })
 export class AppModule {}
